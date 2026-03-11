@@ -1,0 +1,4 @@
+baseURL = "https://database.crueltyfreecompass.com/"
+languageCode = "en-us"
+title = "Cruelty Free Compass Database"
+theme = "cfc-theme"

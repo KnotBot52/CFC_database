@@ -1,0 +1,9 @@
+{{ define "main" }}
+<article class="single-content">
+    <h1 class="page-title">{{ .Title }}</h1>
+    <div class="card-meta">Published on {{ .Date.Format "January 2, 2006" }}</div>
+    <div class="content-body">
+        {{ .Content }}
+    </div>
+</article>
+{{ end }}

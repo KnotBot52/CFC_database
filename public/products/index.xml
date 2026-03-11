@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cruelty-Free Products Directory on Cruelty Free Compass Database</title>
+    <link>http://localhost:1313/products/</link>
+    <description>Recent content in Cruelty-Free Products Directory on Cruelty Free Compass Database</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/products/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Carmine Red Lipstick</title>
+      <link>http://localhost:1313/products/carmine-red-lipstick/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/products/carmine-red-lipstick/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Green Earth Moisturizer</title>
+      <link>http://localhost:1313/products/green-earth-moisturizer/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/products/green-earth-moisturizer/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Luminous Honey Glow Serum</title>
+      <link>http://localhost:1313/products/luminous-honey-glow-serum/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/products/luminous-honey-glow-serum/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Mineral Sunscreen SPF 50</title>
+      <link>http://localhost:1313/products/mineral-sunscreen-spf-50/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/products/mineral-sunscreen-spf-50/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Pure Leaf Shampoo</title>
+      <link>http://localhost:1313/products/pure-leaf-shampoo/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/products/pure-leaf-shampoo/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

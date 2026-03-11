@@ -1,0 +1,16 @@
+{{ define "main" }}
+<div class="home-content">
+    <h1 class="page-title">Welcome to the {{ site.Title }}</h1>
+    <p>Your comprehensive resource for cruelty-free and vegan alternatives.</p>
+    
+    <div class="content-list">
+        {{ range (where site.RegularPages "Section" "!=" "").ByDate.Reverse | first 10 }}
+        <article class="card">
+            <h2 class="card-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+            <div class="card-meta">{{ .Date.Format "January 2, 2006" }}</div>
+            <p>{{ .Summary }}</p>
+        </article>
+        {{ end }}
+    </div>
+</div>
+{{ end }}

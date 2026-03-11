@@ -1,0 +1,35 @@
+{{ define "main" }}
+<div class="products-header">
+    <h1 class="page-title">{{ .Title }}</h1>
+    {{ with .Content }}
+    <div class="products-description">{{ . }}</div>
+    {{ end }}
+</div>
+
+<div class="product-grid">
+    {{ range .Pages }}
+    <div class="product-card" onclick="toggleExplanation(this)">
+        <div class="product-card-header">
+            <h2 class="product-title">{{ .Title }}</h2>
+            {{ $statusClass := "status-unknown" }}
+            {{ if eq (lower .Params.status) "vegan" }}
+                {{ $statusClass = "status-vegan" }}
+            {{ else if eq (lower .Params.status) "not vegan" }}
+                {{ $statusClass = "status-not-vegan" }}
+            {{ end }}
+            <span class="status-pill {{ $statusClass }}">{{ .Params.status }}</span>
+        </div>
+        
+        <div class="product-explanation">
+            <p>{{ .Params.explanation }}</p>
+        </div>
+    </div>
+    {{ end }}
+</div>
+
+<script>
+function toggleExplanation(element) {
+    element.classList.toggle('expanded');
+}
+</script>
+{{ end }}
