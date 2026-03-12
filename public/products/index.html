@@ -30,94 +30,661 @@
 
     <main class="content-area">
         
+
+
+
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+
+
 <div class="products-header">
-    <h1 class="page-title">Cruelty-Free Products Directory</h1>
-    
+  <h1 class="page-title">Cruelty-Free Products Directory</h1>
+  
 </div>
 
-<div class="product-grid">
-    
-    <div class="product-card" onclick="toggleExplanation(this)">
-        <div class="product-card-header">
-            <h2 class="product-title">Carmine Red Lipstick</h2>
-            
-            
-                
-            
-            <span class="status-pill status-not-vegan">Not Vegan</span>
-        </div>
-        
-        <div class="product-explanation">
-            <p>This classic red lipstick achieves its vibrant color using carmine, a red pigment derived from crushed cochineal insects. It also contains lanolin derived from sheep&#39;s wool.</p>
-        </div>
-    </div>
-    
-    <div class="product-card" onclick="toggleExplanation(this)">
-        <div class="product-card-header">
-            <h2 class="product-title">Green Earth Moisturizer</h2>
-            
-            
-                
-            
-            <span class="status-pill status-vegan">Vegan</span>
-        </div>
-        
-        <div class="product-explanation">
-            <p>This product contains zero animal-derived ingredients. The squalane used is plant-derived (from olives) rather than from shark liver oil, and the company has a strict no-animal-testing policy verified by Leaping Bunny.</p>
-        </div>
-    </div>
-    
-    <div class="product-card" onclick="toggleExplanation(this)">
-        <div class="product-card-header">
-            <h2 class="product-title">Luminous Honey Glow Serum</h2>
-            
-            
-                
-            
-            <span class="status-pill status-not-vegan">Not Vegan</span>
-        </div>
-        
-        <div class="product-explanation">
-            <p>While cruelty-free (not tested on animals), this product contains honey and beeswax as active ingredients. Therefore, it is not suitable for vegans.</p>
-        </div>
-    </div>
-    
-    <div class="product-card" onclick="toggleExplanation(this)">
-        <div class="product-card-header">
-            <h2 class="product-title">Mineral Sunscreen SPF 50</h2>
-            
-            
-                
-            
-            <span class="status-pill status-vegan">Vegan</span>
-        </div>
-        
-        <div class="product-explanation">
-            <p>This mineral sunscreen uses zinc oxide for UV protection and a blend of coconut and jojoba oils for hydration. It is 100% vegan and reef-safe.</p>
-        </div>
-    </div>
-    
-    <div class="product-card" onclick="toggleExplanation(this)">
-        <div class="product-card-header">
-            <h2 class="product-title">Pure Leaf Shampoo</h2>
-            
-            
-                
-            
-            <span class="status-pill status-vegan">Vegan</span>
-        </div>
-        
-        <div class="product-explanation">
-            <p>Pure Leaf Shampoo is certified vegan. All its ingredients are derived directly from botanical extracts, and they use a synthetic preservative system that contains no animal byproducts.</p>
-        </div>
-    </div>
-    
+
+<div class="search-wrapper">
+  <div class="search-bar-container">
+    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+    <input id="product-search" type="search" placeholder="Search products, brands, or ingredients…" autocomplete="off" aria-label="Search products"/>
+    <button id="search-clear" class="search-clear" aria-label="Clear search" hidden>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <p id="search-count" class="search-count" aria-live="polite"></p>
 </div>
+
+
+<div class="product-grid" id="product-grid">
+  
+  
+  
+  
+  
+  
+  
+    
+    
+    
+  
+
+  <div class="product-card"
+       data-title="Carmine Red Lipstick"
+       data-brand=""
+       data-explanation="This classic red lipstick achieves its vibrant color using carmine, a red pigment derived from crushed cochineal insects. It also contains lanolin derived from sheep&#39;s wool.">
+
+    
+    
+    <a class="product-card-image-link" href="/products/carmine-red-lipstick/" tabindex="-1" aria-hidden="true">
+      <div class="product-card-image product-card-image--placeholder">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
+      </div>
+    </a>
+    
+
+    <div class="product-card-body">
+      
+      <h2 class="product-title"><a href="/products/carmine-red-lipstick/">Carmine Red Lipstick</a></h2>
+
+      
+      <div class="badge-dashboard" role="group" aria-label="Ethical evaluation">
+
+        
+        
+        <div class="badge-panel">
+          <button class="eval-badge eval-badge--fail"
+                  aria-expanded="false"
+                  data-panel="vegan-ea9318c3baf0962b2e5fb4b7695e4d53"
+                  >
+            <span class="eval-badge__icon">🚫</span>
+            <span class="eval-badge__content">
+              <span class="eval-badge__label">Materials</span>
+              <span class="eval-badge__status">Not Vegan</span>
+            </span>
+            <svg class="eval-badge__chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          
+          <div class="eval-accordion" id="vegan-ea9318c3baf0962b2e5fb4b7695e4d53" hidden>
+            <p>This classic red lipstick achieves its vibrant color using carmine, a red pigment derived from crushed cochineal insects. It also contains lanolin derived from sheep&#39;s wool.</p>
+          </div>
+          
+        </div>
+
+        
+        
+        <div class="badge-panel">
+          <button class="eval-badge eval-badge--fail"
+                  aria-expanded="false"
+                  data-panel="company-ea9318c3baf0962b2e5fb4b7695e4d53"
+                  >
+            <span class="eval-badge__icon">⚠️</span>
+            <span class="eval-badge__content">
+              <span class="eval-badge__label">Parent Co.</span>
+              <span class="eval-badge__status">Unverified</span>
+            </span>
+            <svg class="eval-badge__chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          
+          <div class="eval-accordion" id="company-ea9318c3baf0962b2e5fb4b7695e4d53" hidden>
+            <p>This classic red lipstick achieves its vibrant color using carmine, a red pigment derived from crushed cochineal insects. It also contains lanolin derived from sheep&#39;s wool.</p>
+          </div>
+          
+        </div>
+
+        
+        
+        <div class="badge-panel">
+          <button class="eval-badge eval-badge--fail"
+                  aria-expanded="false"
+                  data-panel="supply-ea9318c3baf0962b2e5fb4b7695e4d53"
+                  >
+            <span class="eval-badge__icon">🔗</span>
+            <span class="eval-badge__content">
+              <span class="eval-badge__label">Supply Chain</span>
+              <span class="eval-badge__status">Unverified</span>
+            </span>
+            <svg class="eval-badge__chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          
+          <div class="eval-accordion" id="supply-ea9318c3baf0962b2e5fb4b7695e4d53" hidden>
+            <p>This classic red lipstick achieves its vibrant color using carmine, a red pigment derived from crushed cochineal insects. It also contains lanolin derived from sheep&#39;s wool.</p>
+          </div>
+          
+        </div>
+
+      </div>
+
+      <a class="product-card-cta" href="/products/carmine-red-lipstick/">View Details →</a>
+    </div>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+    
+    
+    
+  
+
+  <div class="product-card"
+       data-title="Green Earth Moisturizer"
+       data-brand=""
+       data-explanation="This product contains zero animal-derived ingredients. The squalane used is plant-derived (from olives) rather than from shark liver oil, and the company has a strict no-animal-testing policy verified by Leaping Bunny.">
+
+    
+    
+    <a class="product-card-image-link" href="/products/green-earth-moisturizer/" tabindex="-1" aria-hidden="true">
+      <div class="product-card-image product-card-image--placeholder">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
+      </div>
+    </a>
+    
+
+    <div class="product-card-body">
+      
+      <h2 class="product-title"><a href="/products/green-earth-moisturizer/">Green Earth Moisturizer</a></h2>
+
+      
+      <div class="badge-dashboard" role="group" aria-label="Ethical evaluation">
+
+        
+        
+        <div class="badge-panel">
+          <button class="eval-badge eval-badge--fail"
+                  aria-expanded="false"
+                  data-panel="vegan-c420ff4fd8cc088ab7ac21342aeef625"
+                  >
+            <span class="eval-badge__icon">🚫</span>
+            <span class="eval-badge__content">
+              <span class="eval-badge__label">Materials</span>
+              <span class="eval-badge__status">Not Vegan</span>
+            </span>
+            <svg class="eval-badge__chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          
+          <div class="eval-accordion" id="vegan-c420ff4fd8cc088ab7ac21342aeef625" hidden>
+            <p>This product contains zero animal-derived ingredients. The squalane used is plant-derived (from olives) rather than from shark liver oil, and the company has a strict no-animal-testing policy verified by Leaping Bunny.</p>
+          </div>
+          
+        </div>
+
+        
+        
+        <div class="badge-panel">
+          <button class="eval-badge eval-badge--fail"
+                  aria-expanded="false"
+                  data-panel="company-c420ff4fd8cc088ab7ac21342aeef625"
+                  >
+            <span class="eval-badge__icon">⚠️</span>
+            <span class="eval-badge__content">
+              <span class="eval-badge__label">Parent Co.</span>
+              <span class="eval-badge__status">Unverified</span>
+            </span>
+            <svg class="eval-badge__chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          
+          <div class="eval-accordion" id="company-c420ff4fd8cc088ab7ac21342aeef625" hidden>
+            <p>This product contains zero animal-derived ingredients. The squalane used is plant-derived (from olives) rather than from shark liver oil, and the company has a strict no-animal-testing policy verified by Leaping Bunny.</p>
+          </div>
+          
+        </div>
+
+        
+        
+        <div class="badge-panel">
+          <button class="eval-badge eval-badge--fail"
+                  aria-expanded="false"
+                  data-panel="supply-c420ff4fd8cc088ab7ac21342aeef625"
+                  >
+            <span class="eval-badge__icon">🔗</span>
+            <span class="eval-badge__content">
+              <span class="eval-badge__label">Supply Chain</span>
+              <span class="eval-badge__status">Unverified</span>
+            </span>
+            <svg class="eval-badge__chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          
+          <div class="eval-accordion" id="supply-c420ff4fd8cc088ab7ac21342aeef625" hidden>
+            <p>This product contains zero animal-derived ingredients. The squalane used is plant-derived (from olives) rather than from shark liver oil, and the company has a strict no-animal-testing policy verified by Leaping Bunny.</p>
+          </div>
+          
+        </div>
+
+      </div>
+
+      <a class="product-card-cta" href="/products/green-earth-moisturizer/">View Details →</a>
+    </div>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+    
+    
+    
+  
+
+  <div class="product-card"
+       data-title="Luminous Honey Glow Serum"
+       data-brand=""
+       data-explanation="While cruelty-free (not tested on animals), this product contains honey and beeswax as active ingredients. Therefore, it is not suitable for vegans.">
+
+    
+    
+    <a class="product-card-image-link" href="/products/luminous-honey-glow-serum/" tabindex="-1" aria-hidden="true">
+      <div class="product-card-image product-card-image--placeholder">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
+      </div>
+    </a>
+    
+
+    <div class="product-card-body">
+      
+      <h2 class="product-title"><a href="/products/luminous-honey-glow-serum/">Luminous Honey Glow Serum</a></h2>
+
+      
+      <div class="badge-dashboard" role="group" aria-label="Ethical evaluation">
+
+        
+        
+        <div class="badge-panel">
+          <button class="eval-badge eval-badge--fail"
+                  aria-expanded="false"
+                  data-panel="vegan-bf90efdc38f19dce01c9dbb63b36d27a"
+                  >
+            <span class="eval-badge__icon">🚫</span>
+            <span class="eval-badge__content">
+              <span class="eval-badge__label">Materials</span>
+              <span class="eval-badge__status">Not Vegan</span>
+            </span>
+            <svg class="eval-badge__chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          
+          <div class="eval-accordion" id="vegan-bf90efdc38f19dce01c9dbb63b36d27a" hidden>
+            <p>While cruelty-free (not tested on animals), this product contains honey and beeswax as active ingredients. Therefore, it is not suitable for vegans.</p>
+          </div>
+          
+        </div>
+
+        
+        
+        <div class="badge-panel">
+          <button class="eval-badge eval-badge--fail"
+                  aria-expanded="false"
+                  data-panel="company-bf90efdc38f19dce01c9dbb63b36d27a"
+                  >
+            <span class="eval-badge__icon">⚠️</span>
+            <span class="eval-badge__content">
+              <span class="eval-badge__label">Parent Co.</span>
+              <span class="eval-badge__status">Unverified</span>
+            </span>
+            <svg class="eval-badge__chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          
+          <div class="eval-accordion" id="company-bf90efdc38f19dce01c9dbb63b36d27a" hidden>
+            <p>While cruelty-free (not tested on animals), this product contains honey and beeswax as active ingredients. Therefore, it is not suitable for vegans.</p>
+          </div>
+          
+        </div>
+
+        
+        
+        <div class="badge-panel">
+          <button class="eval-badge eval-badge--fail"
+                  aria-expanded="false"
+                  data-panel="supply-bf90efdc38f19dce01c9dbb63b36d27a"
+                  >
+            <span class="eval-badge__icon">🔗</span>
+            <span class="eval-badge__content">
+              <span class="eval-badge__label">Supply Chain</span>
+              <span class="eval-badge__status">Unverified</span>
+            </span>
+            <svg class="eval-badge__chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          
+          <div class="eval-accordion" id="supply-bf90efdc38f19dce01c9dbb63b36d27a" hidden>
+            <p>While cruelty-free (not tested on animals), this product contains honey and beeswax as active ingredients. Therefore, it is not suitable for vegans.</p>
+          </div>
+          
+        </div>
+
+      </div>
+
+      <a class="product-card-cta" href="/products/luminous-honey-glow-serum/">View Details →</a>
+    </div>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+    
+    
+    
+  
+
+  <div class="product-card"
+       data-title="Mineral Sunscreen SPF 50"
+       data-brand=""
+       data-explanation="This mineral sunscreen uses zinc oxide for UV protection and a blend of coconut and jojoba oils for hydration. It is 100% vegan and reef-safe.">
+
+    
+    
+    <a class="product-card-image-link" href="/products/mineral-sunscreen-spf-50/" tabindex="-1" aria-hidden="true">
+      <div class="product-card-image product-card-image--placeholder">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
+      </div>
+    </a>
+    
+
+    <div class="product-card-body">
+      
+      <h2 class="product-title"><a href="/products/mineral-sunscreen-spf-50/">Mineral Sunscreen SPF 50</a></h2>
+
+      
+      <div class="badge-dashboard" role="group" aria-label="Ethical evaluation">
+
+        
+        
+        <div class="badge-panel">
+          <button class="eval-badge eval-badge--fail"
+                  aria-expanded="false"
+                  data-panel="vegan-519271230872efbe0ca8f436f0d4132a"
+                  >
+            <span class="eval-badge__icon">🚫</span>
+            <span class="eval-badge__content">
+              <span class="eval-badge__label">Materials</span>
+              <span class="eval-badge__status">Not Vegan</span>
+            </span>
+            <svg class="eval-badge__chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          
+          <div class="eval-accordion" id="vegan-519271230872efbe0ca8f436f0d4132a" hidden>
+            <p>This mineral sunscreen uses zinc oxide for UV protection and a blend of coconut and jojoba oils for hydration. It is 100% vegan and reef-safe.</p>
+          </div>
+          
+        </div>
+
+        
+        
+        <div class="badge-panel">
+          <button class="eval-badge eval-badge--fail"
+                  aria-expanded="false"
+                  data-panel="company-519271230872efbe0ca8f436f0d4132a"
+                  >
+            <span class="eval-badge__icon">⚠️</span>
+            <span class="eval-badge__content">
+              <span class="eval-badge__label">Parent Co.</span>
+              <span class="eval-badge__status">Unverified</span>
+            </span>
+            <svg class="eval-badge__chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          
+          <div class="eval-accordion" id="company-519271230872efbe0ca8f436f0d4132a" hidden>
+            <p>This mineral sunscreen uses zinc oxide for UV protection and a blend of coconut and jojoba oils for hydration. It is 100% vegan and reef-safe.</p>
+          </div>
+          
+        </div>
+
+        
+        
+        <div class="badge-panel">
+          <button class="eval-badge eval-badge--fail"
+                  aria-expanded="false"
+                  data-panel="supply-519271230872efbe0ca8f436f0d4132a"
+                  >
+            <span class="eval-badge__icon">🔗</span>
+            <span class="eval-badge__content">
+              <span class="eval-badge__label">Supply Chain</span>
+              <span class="eval-badge__status">Unverified</span>
+            </span>
+            <svg class="eval-badge__chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          
+          <div class="eval-accordion" id="supply-519271230872efbe0ca8f436f0d4132a" hidden>
+            <p>This mineral sunscreen uses zinc oxide for UV protection and a blend of coconut and jojoba oils for hydration. It is 100% vegan and reef-safe.</p>
+          </div>
+          
+        </div>
+
+      </div>
+
+      <a class="product-card-cta" href="/products/mineral-sunscreen-spf-50/">View Details →</a>
+    </div>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+    
+    
+    
+  
+
+  <div class="product-card"
+       data-title="Pure Leaf Shampoo"
+       data-brand=""
+       data-explanation="Pure Leaf Shampoo is certified vegan. All its ingredients are derived directly from botanical extracts, and they use a synthetic preservative system that contains no animal byproducts.">
+
+    
+    
+    <a class="product-card-image-link" href="/products/pure-leaf-shampoo/" tabindex="-1" aria-hidden="true">
+      <div class="product-card-image product-card-image--placeholder">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
+      </div>
+    </a>
+    
+
+    <div class="product-card-body">
+      
+      <h2 class="product-title"><a href="/products/pure-leaf-shampoo/">Pure Leaf Shampoo</a></h2>
+
+      
+      <div class="badge-dashboard" role="group" aria-label="Ethical evaluation">
+
+        
+        
+        <div class="badge-panel">
+          <button class="eval-badge eval-badge--fail"
+                  aria-expanded="false"
+                  data-panel="vegan-3e46ad0aec48539cd54d024c40fd77d7"
+                  >
+            <span class="eval-badge__icon">🚫</span>
+            <span class="eval-badge__content">
+              <span class="eval-badge__label">Materials</span>
+              <span class="eval-badge__status">Not Vegan</span>
+            </span>
+            <svg class="eval-badge__chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          
+          <div class="eval-accordion" id="vegan-3e46ad0aec48539cd54d024c40fd77d7" hidden>
+            <p>Pure Leaf Shampoo is certified vegan. All its ingredients are derived directly from botanical extracts, and they use a synthetic preservative system that contains no animal byproducts.</p>
+          </div>
+          
+        </div>
+
+        
+        
+        <div class="badge-panel">
+          <button class="eval-badge eval-badge--fail"
+                  aria-expanded="false"
+                  data-panel="company-3e46ad0aec48539cd54d024c40fd77d7"
+                  >
+            <span class="eval-badge__icon">⚠️</span>
+            <span class="eval-badge__content">
+              <span class="eval-badge__label">Parent Co.</span>
+              <span class="eval-badge__status">Unverified</span>
+            </span>
+            <svg class="eval-badge__chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          
+          <div class="eval-accordion" id="company-3e46ad0aec48539cd54d024c40fd77d7" hidden>
+            <p>Pure Leaf Shampoo is certified vegan. All its ingredients are derived directly from botanical extracts, and they use a synthetic preservative system that contains no animal byproducts.</p>
+          </div>
+          
+        </div>
+
+        
+        
+        <div class="badge-panel">
+          <button class="eval-badge eval-badge--fail"
+                  aria-expanded="false"
+                  data-panel="supply-3e46ad0aec48539cd54d024c40fd77d7"
+                  >
+            <span class="eval-badge__icon">🔗</span>
+            <span class="eval-badge__content">
+              <span class="eval-badge__label">Supply Chain</span>
+              <span class="eval-badge__status">Unverified</span>
+            </span>
+            <svg class="eval-badge__chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          
+          <div class="eval-accordion" id="supply-3e46ad0aec48539cd54d024c40fd77d7" hidden>
+            <p>Pure Leaf Shampoo is certified vegan. All its ingredients are derived directly from botanical extracts, and they use a synthetic preservative system that contains no animal byproducts.</p>
+          </div>
+          
+        </div>
+
+      </div>
+
+      <a class="product-card-cta" href="/products/pure-leaf-shampoo/">View Details →</a>
+    </div>
+  </div>
+  
+</div>
+
+<div id="no-results" class="no-results" hidden>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+  <h3>No products found</h3>
+  <p>Try a different search term or clear the search.</p>
+</div>
+
+
+<script id="products-data" type="application/json">"[{\"amazon_url\":\"\",\"brand\":\"\",\"category\":\"\",\"company_cruelty_free\":false,\"explanation\":\"This classic red lipstick achieves its vibrant color using carmine, a red pigment derived from crushed cochineal insects. It also contains lanolin derived from sheep's wool.\",\"explanation_company\":\"\",\"explanation_supply_chain\":\"\",\"explanation_vegan\":\"\",\"image\":\"\",\"is_vegan\":false,\"status\":\"Not Vegan\",\"supply_chain_ethical\":false,\"title\":\"Carmine Red Lipstick\",\"url\":\"/products/carmine-red-lipstick/\"},{\"amazon_url\":\"\",\"brand\":\"\",\"category\":\"\",\"company_cruelty_free\":false,\"explanation\":\"This product contains zero animal-derived ingredients. The squalane used is plant-derived (from olives) rather than from shark liver oil, and the company has a strict no-animal-testing policy verified by Leaping Bunny.\",\"explanation_company\":\"\",\"explanation_supply_chain\":\"\",\"explanation_vegan\":\"\",\"image\":\"\",\"is_vegan\":false,\"status\":\"Vegan\",\"supply_chain_ethical\":false,\"title\":\"Green Earth Moisturizer\",\"url\":\"/products/green-earth-moisturizer/\"},{\"amazon_url\":\"\",\"brand\":\"\",\"category\":\"\",\"company_cruelty_free\":false,\"explanation\":\"While cruelty-free (not tested on animals), this product contains honey and beeswax as active ingredients. Therefore, it is not suitable for vegans.\",\"explanation_company\":\"\",\"explanation_supply_chain\":\"\",\"explanation_vegan\":\"\",\"image\":\"\",\"is_vegan\":false,\"status\":\"Not Vegan\",\"supply_chain_ethical\":false,\"title\":\"Luminous Honey Glow Serum\",\"url\":\"/products/luminous-honey-glow-serum/\"},{\"amazon_url\":\"\",\"brand\":\"\",\"category\":\"\",\"company_cruelty_free\":false,\"explanation\":\"This mineral sunscreen uses zinc oxide for UV protection and a blend of coconut and jojoba oils for hydration. It is 100% vegan and reef-safe.\",\"explanation_company\":\"\",\"explanation_supply_chain\":\"\",\"explanation_vegan\":\"\",\"image\":\"\",\"is_vegan\":false,\"status\":\"Vegan\",\"supply_chain_ethical\":false,\"title\":\"Mineral Sunscreen SPF 50\",\"url\":\"/products/mineral-sunscreen-spf-50/\"},{\"amazon_url\":\"\",\"brand\":\"\",\"category\":\"\",\"company_cruelty_free\":false,\"explanation\":\"Pure Leaf Shampoo is certified vegan. All its ingredients are derived directly from botanical extracts, and they use a synthetic preservative system that contains no animal byproducts.\",\"explanation_company\":\"\",\"explanation_supply_chain\":\"\",\"explanation_vegan\":\"\",\"image\":\"\",\"is_vegan\":false,\"status\":\"Vegan\",\"supply_chain_ethical\":false,\"title\":\"Pure Leaf Shampoo\",\"url\":\"/products/pure-leaf-shampoo/\"}]"</script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js" defer></script>
 
 <script>
-function toggleExplanation(element) {
-    element.classList.toggle('expanded');
-}
+(function () {
+  'use strict';
+
+   
+  document.addEventListener('click', function (e) {
+    const btn = e.target.closest('.eval-badge[data-panel]');
+    if (!btn || btn.disabled) return;
+
+    const panelId = btn.getAttribute('data-panel');
+    const panel   = document.getElementById(panelId);
+    const card    = btn.closest('.product-card');
+    const isOpen  = btn.getAttribute('aria-expanded') === 'true';
+
+    
+    card.querySelectorAll('.eval-badge[aria-expanded="true"]').forEach(function(ob) {
+      ob.setAttribute('aria-expanded', 'false');
+      const op = document.getElementById(ob.getAttribute('data-panel'));
+      if (op) { op.style.maxHeight = '0'; setTimeout(function(){ op.hidden = true; }, 280); }
+    });
+
+    if (!isOpen && panel) {
+      panel.hidden = false;
+      
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+        });
+      });
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  });
+
+   
+  document.addEventListener('DOMContentLoaded', function () {
+    function initSearch() {
+      if (typeof Fuse === 'undefined') { setTimeout(initSearch, 50); return; }
+
+      const raw      = document.getElementById('products-data').textContent;
+      const products = JSON.parse(raw);
+      const grid     = document.getElementById('product-grid');
+      const cards    = Array.from(grid.querySelectorAll('.product-card'));
+      const input    = document.getElementById('product-search');
+      const clearBtn = document.getElementById('search-clear');
+      const countEl  = document.getElementById('search-count');
+      const noRes    = document.getElementById('no-results');
+
+      const fuse = new Fuse(products, {
+        keys: [
+          { name: 'title',       weight: 0.5 },
+          { name: 'brand',       weight: 0.3 },
+          { name: 'explanation', weight: 0.2 },
+        ],
+        threshold: 0.35,
+        includeScore: true,
+        minMatchCharLength: 2,
+      });
+
+      function showCount(n, total) {
+        countEl.textContent = input.value.trim() === ''
+          ? '' : (n === total ? 'Showing all ' + total + ' products' : n + ' of ' + total + ' products match');
+      }
+
+      function render(query) {
+        query = query.trim();
+        clearBtn.hidden = query === '';
+        if (query === '') {
+          cards.forEach(function(c){ c.hidden = false; c.classList.remove('fuse-match'); });
+          noRes.hidden = true;
+          showCount(cards.length, cards.length);
+          return;
+        }
+        const results    = fuse.search(query);
+        const matchedUrls = new Set(results.map(function(r){ return r.item.url; }));
+        let visible = 0;
+        cards.forEach(function(card) {
+           
+          const cta = card.querySelector('.product-card-cta');
+          const href = cta ? cta.getAttribute('href') : '';
+          const matched = matchedUrls.has(href) || matchedUrls.has(href.replace(/\/$/, ''));
+          card.hidden = !matched;
+          card.classList.toggle('fuse-match', matched);
+          if (matched) visible++;
+        });
+        noRes.hidden = visible > 0;
+        showCount(visible, cards.length);
+      }
+
+      input.addEventListener('input', function(){ render(input.value); });
+      clearBtn.addEventListener('click', function(){ input.value = ''; render(''); input.focus(); });
+      showCount(cards.length, cards.length);
+    }
+    initSearch();
+  });
+})();
 </script>
 
     </main>

@@ -1,0 +1,291 @@
+{{ define "main" }}
+
+{{ $evegan := .Params.explanation_vegan | default "" }}
+{{ $ecompany := .Params.explanation_company | default "" }}
+{{ $esupply := .Params.explanation_supply_chain | default "" }}
+{{ $fallback := .Params.explanation | default (.Params.detailed_explanation | default "") }}
+{{ if and (eq $evegan "") (eq $ecompany "") (eq $esupply "") }}
+{{ $evegan = $fallback }}{{ $ecompany = $fallback }}{{ $esupply = $fallback }}
+{{ end }}
+
+{{ $vPass := .Params.is_vegan | default false }}
+{{ $cPass := .Params.company_cruelty_free | default false }}
+{{ $sPass := .Params.supply_chain_ethical | default false }}
+
+{{ $statusClass := "status-unknown" }}
+{{ if eq (lower (.Params.status | default "")) "vegan" }}
+{{ $statusClass = "status-vegan" }}
+{{ else if eq (lower (.Params.status | default "")) "not vegan" }}
+{{ $statusClass = "status-not-vegan" }}
+{{ end }}
+
+<article class="product-single">
+
+  {{/* ── Hero / Header ── */}}
+  <div class="product-single__hero">
+    {{ if .Params.image }}
+    <div class="product-single__image">
+      <img src="{{ .Params.image }}" alt="{{ .Title }}" />
+    </div>
+    {{ end }}
+
+    <div class="product-single__meta">
+      {{ if .Params.brand }}<p class="product-single__brand">{{ .Params.brand }}</p>{{ end }}
+      <h1 class="product-single__title">{{ .Title }}</h1>
+
+      {{ if .Params.status }}
+      <div class="product-badges" style="margin-bottom:0.25rem;">
+        <span class="status-pill {{ $statusClass }}">{{ .Params.status }}</span>
+      </div>
+      {{ end }}
+
+      {{/* ── Tri-Fold Badge Dashboard (large) ── */}}
+      <div class="badge-dashboard badge-dashboard--large" role="group" aria-label="Ethical evaluation">
+
+        {{/* Badge 1 – Materials */}}
+        <div class="badge-panel">
+          <button class="eval-badge eval-badge--lg {{ if $vPass }}eval-badge--pass{{ else }}eval-badge--fail{{ end }}"
+            aria-expanded="false" data-panel="sv-vegan" data-modal-title="Materials Evaluation"
+            data-modal-body="{{ $evegan | htmlEscape }}">
+            <span class="eval-badge__icon">{{ if $vPass }}🌱{{ else }}🚫{{ end }}</span>
+            <span class="eval-badge__content">
+              <span class="eval-badge__label">Materials</span>
+              <span class="eval-badge__status">{{ if $vPass }}Vegan{{ else }}Not Vegan{{ end }}</span>
+            </span>
+            <svg class="eval-badge__chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </button>
+          {{ if $evegan }}
+          <div class="eval-accordion" id="sv-vegan" hidden>
+            <p>{{ $evegan }}</p>
+          </div>
+          {{ end }}
+        </div>
+
+        {{/* Badge 2 – Parent Company */}}
+        <div class="badge-panel">
+          <button class="eval-badge eval-badge--lg {{ if $cPass }}eval-badge--pass{{ else }}eval-badge--fail{{ end }}"
+            aria-expanded="false" data-panel="sv-company" data-modal-title="Parent Company Evaluation"
+            data-modal-body="{{ $ecompany | htmlEscape }}">
+            <span class="eval-badge__icon">{{ if $cPass }}🐰{{ else }}⚠️{{ end }}</span>
+            <span class="eval-badge__content">
+              <span class="eval-badge__label">Parent Company</span>
+              <span class="eval-badge__status">{{ if $cPass }}Cruelty-Free{{ else }}Unverified{{ end }}</span>
+            </span>
+            <svg class="eval-badge__chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </button>
+          {{ if $ecompany }}
+          <div class="eval-accordion" id="sv-company" hidden>
+            <p>{{ $ecompany }}</p>
+          </div>
+          {{ end }}
+        </div>
+
+        {{/* Badge 3 – Supply Chain */}}
+        <div class="badge-panel">
+          <button class="eval-badge eval-badge--lg {{ if $sPass }}eval-badge--pass{{ else }}eval-badge--fail{{ end }}"
+            aria-expanded="false" data-panel="sv-supply" data-modal-title="Supply Chain Evaluation"
+            data-modal-body="{{ $esupply | htmlEscape }}">
+            <span class="eval-badge__icon">{{ if $sPass }}✅{{ else }}🔗{{ end }}</span>
+            <span class="eval-badge__content">
+              <span class="eval-badge__label">Supply Chain</span>
+              <span class="eval-badge__status">{{ if $sPass }}Ethical{{ else }}Unverified{{ end }}</span>
+            </span>
+            <svg class="eval-badge__chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </button>
+          {{ if $esupply }}
+          <div class="eval-accordion" id="sv-supply" hidden>
+            <p>{{ $esupply }}</p>
+          </div>
+          {{ end }}
+        </div>
+
+      </div>{{/* /badge-dashboard--large */}}
+
+      {{ if .Params.amazon_url }}
+      <a href="{{ .Params.amazon_url }}" class="btn-amazon" target="_blank" rel="noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+          <path
+            d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+        </svg>
+        View on Amazon
+      </a>
+      {{ end }}
+    </div>
+  </div>
+
+  {{/* ── Markdown body content ── */}}
+  {{ with .Content }}
+  <section class="product-single__content">{{ . }}</section>
+  {{ end }}
+
+</article>
+
+{{/* ── Modal Overlay (single page) ── */}}
+<div id="eval-modal" class="eval-modal" role="dialog" aria-modal="true" aria-labelledby="eval-modal-title" hidden>
+  <div class="eval-modal__backdrop"></div>
+  <div class="eval-modal__dialog">
+    <div class="eval-modal__header">
+      <h3 id="eval-modal-title" class="eval-modal__title"></h3>
+      <button class="eval-modal__close" aria-label="Close">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+    </div>
+    <div class="eval-modal__body">
+      <p id="eval-modal-body" class="eval-modal__text"></p>
+    </div>
+    <div class="eval-modal__footer">
+      <p class="eval-modal__source">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          width="14" height="14">
+          <circle cx="12" cy="12" r="10" />
+          <line x1="12" y1="8" x2="12" y2="12" />
+          <line x1="12" y1="16" x2="12.01" y2="16" />
+        </svg>
+        Analysis generated by DeepSeek via local Ollama
+      </p>
+    </div>
+  </div>
+</div>
+
+{{/* ══════════════════════════════════════════════════════════════
+SIMILAR PRODUCTS ENGINE
+═══════════════════════════════════════════════════════════════ */}}
+{{ $currentCategory := .Params.category | default "" }}
+{{ $currentURL := .RelPermalink }}
+{{ $allProductPages := site.GetPage "/products" }}
+{{ $siblings := slice }}
+{{ if $allProductPages }}{{ $siblings = $allProductPages.Pages }}{{ end }}
+
+{{ $ethical := where $siblings "Params.is_vegan" true }}
+{{ $ethical = where $ethical "Params.company_cruelty_free" true }}
+{{ $ethical = where $ethical "Params.supply_chain_ethical" true }}
+{{ if $currentCategory }}{{ $ethical = where $ethical "Params.category" $currentCategory }}{{ end }}
+
+{{ $similar := slice }}
+{{ range $ethical }}
+{{ if ne .RelPermalink $currentURL }}{{ $similar = $similar | append . }}{{ end }}
+{{ end }}
+{{ $similar = first 3 $similar }}
+
+{{ if $similar }}
+<section class="similar-products">
+  <div class="similar-products__header">
+    <h2>Similar Products You'll Love</h2>
+    <p>Verified vegan, cruelty-free &amp; ethically sourced alternatives.</p>
+  </div>
+  <div class="similar-products__grid">
+    {{ range $similar }}
+    {{ $sc := "status-unknown" }}
+    {{ if eq (lower (.Params.status | default "")) "vegan" }}{{ $sc = "status-vegan" }}
+    {{ else if eq (lower (.Params.status | default "")) "not vegan" }}{{ $sc = "status-not-vegan" }}{{ end }}
+    <a class="similar-card" href="{{ .RelPermalink }}">
+      {{ if .Params.image }}
+      <div class="similar-card__image"><img src="{{ .Params.image }}" alt="{{ .Title }}" loading="lazy" /></div>
+      {{ else }}
+      <div class="similar-card__image similar-card__image--placeholder">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.5">
+          <rect x="3" y="3" width="18" height="18" rx="2" />
+          <circle cx="8.5" cy="8.5" r="1.5" />
+          <polyline points="21,15 16,10 5,21" />
+        </svg>
+      </div>
+      {{ end }}
+      <div class="similar-card__body">
+        {{ if .Params.brand }}<p class="product-brand">{{ .Params.brand }}</p>{{ end }}
+        <h3 class="similar-card__title">{{ .Title }}</h3>
+        <div class="product-badges">
+          {{ if .Params.status }}<span class="status-pill {{ $sc }}">{{ .Params.status }}</span>{{ end }}
+          <span class="badge badge-vegan">🌱</span>
+          <span class="badge badge-cruelty-free">🐰</span>
+          <span class="badge badge-ethical">✅</span>
+        </div>
+      </div>
+    </a>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
+
+<script>
+  (function () {
+    'use strict';
+
+    /* ── Shared accordion handler ── */
+    document.addEventListener('click', function (e) {
+      const btn = e.target.closest('.eval-badge[data-panel]');
+      if (!btn || btn.disabled) return;
+
+      const panelId = btn.getAttribute('data-panel');
+      const panel = document.getElementById(panelId);
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      const isLarge = btn.classList.contains('eval-badge--lg');
+      const container = btn.closest('.badge-dashboard');
+
+      /* Close all siblings */
+      container.querySelectorAll('.eval-badge[aria-expanded="true"]').forEach(function (ob) {
+        ob.setAttribute('aria-expanded', 'false');
+        const op = document.getElementById(ob.getAttribute('data-panel'));
+        if (op) { op.style.maxHeight = '0'; setTimeout(function () { op.hidden = true; }, 280); }
+      });
+
+      if (!isOpen && panel) {
+        if (isLarge) {
+          /* On the single page: show modal */
+          const modal = document.getElementById('eval-modal');
+          const mTitle = document.getElementById('eval-modal-title');
+          const mBody = document.getElementById('eval-modal-body');
+          mTitle.textContent = btn.getAttribute('data-modal-title') || 'Evaluation';
+          mBody.textContent = btn.getAttribute('data-modal-body') || '';
+          modal.hidden = false;
+          document.body.style.overflow = 'hidden';
+          modal.querySelector('.eval-modal__close').focus();
+          btn.setAttribute('aria-expanded', 'true');
+        } else {
+          /* On the list page: show accordion */
+          panel.hidden = false;
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+              panel.style.maxHeight = panel.scrollHeight + 'px';
+            });
+          });
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      }
+    });
+
+    /* ── Modal close ── */
+    function closeModal() {
+      const modal = document.getElementById('eval-modal');
+      if (!modal) return;
+      modal.hidden = true;
+      document.body.style.overflow = '';
+      /* Reset aria-expanded on single-page buttons */
+      document.querySelectorAll('.eval-badge--lg[aria-expanded="true"]').forEach(function (b) {
+        b.setAttribute('aria-expanded', 'false');
+      });
+    }
+
+    document.addEventListener('click', function (e) {
+      if (e.target.closest('.eval-modal__close')) { closeModal(); return; }
+      if (e.target.closest('.eval-modal__backdrop')) { closeModal(); }
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeModal();
+    });
+  })();
+</script>
+{{ end }}

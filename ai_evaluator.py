@@ -112,12 +112,20 @@ async def evaluate_product(product_metadata: Dict[str, Any], prompt: str) -> Dic
         "You are an expert AI evaluator assessing products for vegan status and ethical practices. "
         "You MUST output ONLY a raw JSON object and absolutely nothing else — no preamble, no thinking "
         "tags, no markdown code fences (no ```json). "
-        "The JSON MUST contain exactly these four keys with NO null values: "
-        "\"is_vegan\" (boolean), \"company_cruelty_free\" (boolean), "
-        "\"supply_chain_ethical\" (boolean), and \"detailed_explanation\" (string — be specific, "
-        "cite brand names or ingredients found in the web context). "
-        "If you are uncertain, make your best-informed judgement and explain your reasoning in "
-        "detailed_explanation. Never return null for boolean fields — default to false if unsure."
+        "The JSON MUST contain exactly these SIX keys with NO null values:\n"
+        "  \"is_vegan\" (boolean),\n"
+        "  \"company_cruelty_free\" (boolean),\n"
+        "  \"supply_chain_ethical\" (boolean),\n"
+        "  \"explanation_vegan\" (string — 1-3 sentences specific to the ingredients/materials; "
+        "    cite specific ingredient names or fabric types found; state whether they are vegan or not and why),\n"
+        "  \"explanation_company\" (string — 1-3 sentences specific to the brand's parent company; "
+        "    cite the parent company name, any known certifications such as Leaping Bunny or PETA, "
+        "    or any known animal testing policies),\n"
+        "  \"explanation_supply_chain\" (string — 1-3 sentences on labor practices and supply chain ethics; "
+        "    cite specific concerns or certifications such as Fair Trade, B-Corp, or known issues),\n"
+        "  \"detailed_explanation\" (string — a combined summary of all three criteria in 2-4 sentences). "
+        "If you are uncertain, make your best-informed judgement. "
+        "Never return null for any field — default booleans to false and strings to a brief explanation if unsure."
     )
 
     web_section = (
@@ -170,6 +178,9 @@ async def evaluate_product(product_metadata: Dict[str, Any], prompt: str) -> Dic
             "is_vegan": False,
             "company_cruelty_free": False,
             "supply_chain_ethical": False,
+            "explanation_vegan": "No ingredient evaluation available.",
+            "explanation_company": "No parent company evaluation available.",
+            "explanation_supply_chain": "No supply chain evaluation available.",
             "detailed_explanation": "No explanation provided."
         }
         for key, default in defaults.items():

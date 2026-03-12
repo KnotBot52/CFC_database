@@ -1,0 +1,263 @@
+{{ define "main" }}
+
+{{/* ── Build JSON for Fuse.js ── */}}
+{{ $products := slice }}
+{{ range .Pages }}
+  {{ $p := dict
+    "title"                (.Title)
+    "brand"                (.Params.brand | default "")
+    "explanation"          (.Params.explanation | default (.Params.detailed_explanation | default ""))
+    "explanation_vegan"    (.Params.explanation_vegan | default "")
+    "explanation_company"  (.Params.explanation_company | default "")
+    "explanation_supply_chain" (.Params.explanation_supply_chain | default "")
+    "category"             (.Params.category | default "")
+    "status"               (.Params.status | default "")
+    "is_vegan"             (.Params.is_vegan | default false)
+    "company_cruelty_free" (.Params.company_cruelty_free | default false)
+    "supply_chain_ethical" (.Params.supply_chain_ethical | default false)
+    "image"                (.Params.image | default "")
+    "amazon_url"           (.Params.amazon_url | default "")
+    "url"                  (.RelPermalink)
+  }}
+  {{ $products = $products | append $p }}
+{{ end }}
+
+{{/* ── Page Header ── */}}
+<div class="products-header">
+  <h1 class="page-title">{{ .Title }}</h1>
+  {{ with .Content }}<div class="products-description">{{ . }}</div>{{ end }}
+</div>
+
+{{/* ── Search Bar ── */}}
+<div class="search-wrapper">
+  <div class="search-bar-container">
+    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+    <input id="product-search" type="search" placeholder="Search products, brands, or ingredients…" autocomplete="off" aria-label="Search products"/>
+    <button id="search-clear" class="search-clear" aria-label="Clear search" hidden>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <p id="search-count" class="search-count" aria-live="polite"></p>
+</div>
+
+{{/* ── Product Grid ── */}}
+<div class="product-grid" id="product-grid">
+  {{ range .Pages }}
+  {{ $evegan   := .Params.explanation_vegan | default "" }}
+  {{ $ecompany := .Params.explanation_company | default "" }}
+  {{ $esupply  := .Params.explanation_supply_chain | default "" }}
+  {{/* Fall back: if no per-criterion fields, try detailed_explanation in all three */}}
+  {{ $fallback := .Params.explanation | default (.Params.detailed_explanation | default "") }}
+  {{ if and (eq $evegan "") (eq $ecompany "") (eq $esupply "") }}
+    {{ $evegan   = $fallback }}
+    {{ $ecompany = $fallback }}
+    {{ $esupply  = $fallback }}
+  {{ end }}
+
+  <div class="product-card"
+       data-title="{{ .Title }}"
+       data-brand="{{ .Params.brand | default "" }}"
+       data-explanation="{{ $fallback }}">
+
+    {{/* Product image */}}
+    {{ if .Params.image }}
+    <a class="product-card-image-link" href="{{ .RelPermalink }}" tabindex="-1" aria-hidden="true">
+      <div class="product-card-image">
+        <img src="{{ .Params.image }}" alt="{{ .Title }}" loading="lazy" />
+      </div>
+    </a>
+    {{ else }}
+    <a class="product-card-image-link" href="{{ .RelPermalink }}" tabindex="-1" aria-hidden="true">
+      <div class="product-card-image product-card-image--placeholder">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
+      </div>
+    </a>
+    {{ end }}
+
+    <div class="product-card-body">
+      {{ if .Params.brand }}<p class="product-brand">{{ .Params.brand }}</p>{{ end }}
+      <h2 class="product-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+
+      {{/* ── Tri-Fold Badge Dashboard ── */}}
+      <div class="badge-dashboard" role="group" aria-label="Ethical evaluation">
+
+        {{/* Badge 1 – Materials / Vegan */}}
+        {{ $vPass := .Params.is_vegan | default false }}
+        <div class="badge-panel">
+          <button class="eval-badge {{ if $vPass }}eval-badge--pass{{ else }}eval-badge--fail{{ end }}"
+                  aria-expanded="false"
+                  data-panel="vegan-{{ .File.UniqueID }}"
+                  {{ if not $evegan }}disabled title="No evaluation data yet"{{ end }}>
+            <span class="eval-badge__icon">{{ if $vPass }}🌱{{ else }}🚫{{ end }}</span>
+            <span class="eval-badge__content">
+              <span class="eval-badge__label">Materials</span>
+              <span class="eval-badge__status">{{ if $vPass }}Vegan{{ else }}Not Vegan{{ end }}</span>
+            </span>
+            <svg class="eval-badge__chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          {{ if $evegan }}
+          <div class="eval-accordion" id="vegan-{{ .File.UniqueID }}" hidden>
+            <p>{{ $evegan }}</p>
+          </div>
+          {{ end }}
+        </div>
+
+        {{/* Badge 2 – Parent Company */}}
+        {{ $cPass := .Params.company_cruelty_free | default false }}
+        <div class="badge-panel">
+          <button class="eval-badge {{ if $cPass }}eval-badge--pass{{ else }}eval-badge--fail{{ end }}"
+                  aria-expanded="false"
+                  data-panel="company-{{ .File.UniqueID }}"
+                  {{ if not $ecompany }}disabled title="No evaluation data yet"{{ end }}>
+            <span class="eval-badge__icon">{{ if $cPass }}🐰{{ else }}⚠️{{ end }}</span>
+            <span class="eval-badge__content">
+              <span class="eval-badge__label">Parent Co.</span>
+              <span class="eval-badge__status">{{ if $cPass }}Cruelty-Free{{ else }}Unverified{{ end }}</span>
+            </span>
+            <svg class="eval-badge__chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          {{ if $ecompany }}
+          <div class="eval-accordion" id="company-{{ .File.UniqueID }}" hidden>
+            <p>{{ $ecompany }}</p>
+          </div>
+          {{ end }}
+        </div>
+
+        {{/* Badge 3 – Supply Chain */}}
+        {{ $sPass := .Params.supply_chain_ethical | default false }}
+        <div class="badge-panel">
+          <button class="eval-badge {{ if $sPass }}eval-badge--pass{{ else }}eval-badge--fail{{ end }}"
+                  aria-expanded="false"
+                  data-panel="supply-{{ .File.UniqueID }}"
+                  {{ if not $esupply }}disabled title="No evaluation data yet"{{ end }}>
+            <span class="eval-badge__icon">{{ if $sPass }}✅{{ else }}🔗{{ end }}</span>
+            <span class="eval-badge__content">
+              <span class="eval-badge__label">Supply Chain</span>
+              <span class="eval-badge__status">{{ if $sPass }}Ethical{{ else }}Unverified{{ end }}</span>
+            </span>
+            <svg class="eval-badge__chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          {{ if $esupply }}
+          <div class="eval-accordion" id="supply-{{ .File.UniqueID }}" hidden>
+            <p>{{ $esupply }}</p>
+          </div>
+          {{ end }}
+        </div>
+
+      </div>{{/* /badge-dashboard */}}
+
+      <a class="product-card-cta" href="{{ .RelPermalink }}">View Details →</a>
+    </div>
+  </div>
+  {{ end }}
+</div>
+
+<div id="no-results" class="no-results" hidden>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+  <h3>No products found</h3>
+  <p>Try a different search term or clear the search.</p>
+</div>
+
+{{/* Fuse.js data */}}
+<script id="products-data" type="application/json">{{ $products | jsonify }}</script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js" defer></script>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ── Accordion logic ── */
+  document.addEventListener('click', function (e) {
+    const btn = e.target.closest('.eval-badge[data-panel]');
+    if (!btn || btn.disabled) return;
+
+    const panelId = btn.getAttribute('data-panel');
+    const panel   = document.getElementById(panelId);
+    const card    = btn.closest('.product-card');
+    const isOpen  = btn.getAttribute('aria-expanded') === 'true';
+
+    // Close all open panels in THIS card first
+    card.querySelectorAll('.eval-badge[aria-expanded="true"]').forEach(function(ob) {
+      ob.setAttribute('aria-expanded', 'false');
+      const op = document.getElementById(ob.getAttribute('data-panel'));
+      if (op) { op.style.maxHeight = '0'; setTimeout(function(){ op.hidden = true; }, 280); }
+    });
+
+    if (!isOpen && panel) {
+      panel.hidden = false;
+      // Force reflow then animate
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+        });
+      });
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  });
+
+  /* ── Fuse.js search ── */
+  document.addEventListener('DOMContentLoaded', function () {
+    function initSearch() {
+      if (typeof Fuse === 'undefined') { setTimeout(initSearch, 50); return; }
+
+      const raw      = document.getElementById('products-data').textContent;
+      const products = JSON.parse(raw);
+      const grid     = document.getElementById('product-grid');
+      const cards    = Array.from(grid.querySelectorAll('.product-card'));
+      const input    = document.getElementById('product-search');
+      const clearBtn = document.getElementById('search-clear');
+      const countEl  = document.getElementById('search-count');
+      const noRes    = document.getElementById('no-results');
+
+      const fuse = new Fuse(products, {
+        keys: [
+          { name: 'title',       weight: 0.5 },
+          { name: 'brand',       weight: 0.3 },
+          { name: 'explanation', weight: 0.2 },
+        ],
+        threshold: 0.35,
+        includeScore: true,
+        minMatchCharLength: 2,
+      });
+
+      function showCount(n, total) {
+        countEl.textContent = input.value.trim() === ''
+          ? '' : (n === total ? 'Showing all ' + total + ' products' : n + ' of ' + total + ' products match');
+      }
+
+      function render(query) {
+        query = query.trim();
+        clearBtn.hidden = query === '';
+        if (query === '') {
+          cards.forEach(function(c){ c.hidden = false; c.classList.remove('fuse-match'); });
+          noRes.hidden = true;
+          showCount(cards.length, cards.length);
+          return;
+        }
+        const results    = fuse.search(query);
+        const matchedUrls = new Set(results.map(function(r){ return r.item.url; }));
+        let visible = 0;
+        cards.forEach(function(card) {
+          /* cards don't have href — find CTA link for URL comparison */
+          const cta = card.querySelector('.product-card-cta');
+          const href = cta ? cta.getAttribute('href') : '';
+          const matched = matchedUrls.has(href) || matchedUrls.has(href.replace(/\/$/, ''));
+          card.hidden = !matched;
+          card.classList.toggle('fuse-match', matched);
+          if (matched) visible++;
+        });
+        noRes.hidden = visible > 0;
+        showCount(visible, cards.length);
+      }
+
+      input.addEventListener('input', function(){ render(input.value); });
+      clearBtn.addEventListener('click', function(){ input.value = ''; render(''); input.focus(); });
+      showCount(cards.length, cards.length);
+    }
+    initSearch();
+  });
+})();
+</script>
+{{ end }}

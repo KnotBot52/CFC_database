@@ -114,6 +114,12 @@ def save_hugo_markdown(product_data, ai_evaluation):
         
     filepath = os.path.join(OUTPUT_DIR, f"{safe_title}.md")
     
+    def _yaml_literal(text):
+        """Wrap a string as a YAML literal block scalar, safely indented."""
+        lines = str(text).replace('"', '\\"').replace('\r', '').split('\n')
+        indented = '\n'.join('  ' + l for l in lines)
+        return f'|\n{indented}'
+
     frontmatter = f"""---
 title: "{product_data['title'].replace('"', '\\"')}"
 brand: "{product_data['brand'].replace('"', '\\"')}"
@@ -123,6 +129,9 @@ is_vegan: {str(ai_evaluation.get('is_vegan', False)).lower()}
 company_cruelty_free: {str(ai_evaluation.get('company_cruelty_free', False)).lower()}
 supply_chain_ethical: {str(ai_evaluation.get('supply_chain_ethical', False)).lower()}
 amazon_url: "{product_data['url']}"
+explanation_vegan: {_yaml_literal(ai_evaluation.get('explanation_vegan', 'No ingredient evaluation available.'))}
+explanation_company: {_yaml_literal(ai_evaluation.get('explanation_company', 'No parent company evaluation available.'))}
+explanation_supply_chain: {_yaml_literal(ai_evaluation.get('explanation_supply_chain', 'No supply chain evaluation available.'))}
 ---
 
 ## Product Details
