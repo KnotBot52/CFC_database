@@ -1,0 +1,27 @@
+---
+title: "Nature’s Bakery Whole Wheat Fig Bars, Raspberry, Real Fruit, Vegan, Non-GMO, Snack bar, 1 box with 12 twin packs (12 twin packs)"
+brand: "Nature's Bakery"
+image: "https://m.media-amazon.com/images/I/71+SLqeevDL._SX569_PIbundle-12,TopRight,0,0_AA569SH20_.jpg"
+category: "Consumables"
+is_vegan: false
+company_cruelty_free: false
+supply_chain_ethical: false
+amazon_url: "https://www.amazon.com/Natures-Bakery-Whole-Wheat-Raspberry/dp/B006BHQU6Y/ref=sr_1_40?dib=eyJ2IjoiMSJ9.7xAVBxEqESZ8KuVFpmbCtQbmL2dJEGjPw1-HIyeFN6A0bxC8zVAukhnwkDg2YKIzdN7Ynvx0gsraTAw9Td9HiUWoL8znu9u8lP5EW08Gqw_OgTybgXI4DsgEi_aYm9WsoWYwPXWpM_d54fo-YVJQa2IoLWPSc-PTa3UWDcYPXerp1olSPlGDQkjj4o_l2gCxDV7vZW58XlVMRoS_7Ng9kl_umH1Lq9-vb7tV8F3skV7MAHqu7ehcvKRku4TNNXXo_-25vDa8FtZ9E0V5gO5g5EEdEH1D4zuXBNeR3sOEqHE.ud-sf1-lW3e4eMZFTcFymJGzoYRyGzd9OpJBD_73qkE&dib_tag=se&keywords=vegan+food&qid=1773283491&sr=8-40"
+---
+
+## Product Details
+
+**Brand:** Nature's Bakery
+
+### Ingredients/Materials
+Important information
+Ingredients
+
+Whole Wheat Flour, Cane Sugar, Fig Paste, Brown Rice Syrup, Raspberry Jam (Naturally Milled Sugar, Cane Sugar, Glycerin, Rice Starch, Raspberries, Apple Powder, Natural Flavor, Pectin, Citric Acid, Locust Bean Gum), Canola Oil, Whole Grain Oats, Glycerin, Fruit Juice (for Color), Sea Salt, Natural Flavor, Citric Acid, Baking Soda.
+
+Legal Disclaimer
+
+Statements regarding dietary supplements have not been evaluated by the FDA and are not intended to diagnose, treat, cure, or prevent any disease or health condition.
+
+## Ethical Evaluation
+Failed to connect or parse Ollama response: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
